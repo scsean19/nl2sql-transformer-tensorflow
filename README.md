@@ -62,5 +62,6 @@ Overall, the results show that the custom TensorFlow Transformer learned many of
 - Hugging Face Evaluate – Used to compute SacreBLEU evaluation metrics.
   https://huggingface.co/docs/evaluate
 
-- SacreBLEU – Standardized BLEU metric implementation for sequence generation evaluation.
-  https://github.com/mjpost/sacrebleu
+- Vaswani et al. *Attention Is All You Need* (2017)
+  https://arxiv.org/abs/1706.03762
+
