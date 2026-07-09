@@ -44,3 +44,23 @@ The model was evaluated on a random 25-example sample from the generated NL→SQ
 The model performed well on player-specific aggregation queries such as `MIN`, `MAX`, `SUM`, `COUNT`, and `AVG`. The main failure cases were threshold-based filtering queries, such as questions asking for players above or below a certain points or rebounds value. I believe this is likely due to the relatively small training dataset and the limited number of threshold-based query examples available during training. In the future, I plan to expand the dataset with additional threshold-based queries to improve the model's ability to generalize to these patterns.
 
 Overall, the results show that the custom TensorFlow Transformer learned many of the core SQL query patterns in the dataset while still leaving room for improvement on less frequent query structures.
+
+
+---
+
+# References
+
+- swar. *nba_api* – Python API used to obtain NBA player and game statistics.
+  https://github.com/swar/nba_api
+
+- TensorFlow Documentation
+  https://www.tensorflow.org/
+
+- TensorFlow. *Transformer Tutorial* (architecture and implementation reference)
+  https://www.tensorflow.org/text/tutorials/transformer
+
+- Hugging Face Evaluate – Used to compute SacreBLEU evaluation metrics.
+  https://huggingface.co/docs/evaluate
+
+- SacreBLEU – Standardized BLEU metric implementation for sequence generation evaluation.
+  https://github.com/mjpost/sacrebleu
