@@ -32,7 +32,7 @@
 
 ✗ Q:    Which players logged a playoff game of 19 points or fewer?
   GT:   SELECT PLAYER_NAME, GAME_ID FROM player_boxscores WHERE PTS <= 19
-  PRED: select sum(pts) from player_boxscores where player_name = 'luke kornet';
+  PRED: select case when home_score > away_score then away_team else home_team end as loser from games where game_id = num;
 
 ✓ Q:    How many W's have the Celtics racked up in the playoffs?
   GT:   SELECT COUNT(*) FROM games WHERE winner = 'Boston Celtics';
@@ -48,7 +48,7 @@
 
 ✗ Q:    Who finished with 6 boards or fewer in a single playoff game?
   GT:   SELECT PLAYER_NAME, GAME_ID FROM player_boxscores WHERE REB <= 6
-  PRED: select winner from games where game_id = num
+  PRED: select case when home_score > away_score then away_team else home_team end as loser from games where game_id = num;
 
 ✓ Q:    How many points did Al Horford score in his worst playoff outing for the Celtics?
   GT:   SELECT MIN(PTS) FROM boxscores WHERE PLAYER_NAME = 'Al Horford' AND TEAM_ABBREVIATION = 'BOS';
@@ -88,14 +88,14 @@
 
 ✗ Q:    Which players posted a minimum of 13 points in a playoff game, and when?
   GT:   SELECT PLAYER_NAME, GAME_ID FROM player_boxscores WHERE PTS >= 13
-  PRED: select sum(pts) from player_boxscores where player_name = ?;
+  PRED: select case when home_score > away_score then away_team else home_team end as loser from games where game_id = num;
 
-✗ Q:    Among the Celtics, who posted the top single-game point total this postseason?
+✓ Q:    Among the Celtics, who posted the top single-game point total this postseason?
   GT:   SELECT PLAYER_NAME FROM boxscores WHERE TEAM_ABBREVIATION = 'BOS' ORDER BY PTS DESC LIMIT 1;
-  PRED: select player_name from boxscores order by pts desc limit 1;
+  PRED: select player_name from boxscores where team_abbreviation = 'bos' order by pts desc limit 1;
 
 ✓ Q:    Which team won a certain playoff game?
   GT:   SELECT winner FROM games WHERE game_id = num
   PRED: select winner from games where game_id = num
 
-Exact match on random sample: 20/25 = 80.00%
+Exact match on random sample: 21/25 = 84.00%
